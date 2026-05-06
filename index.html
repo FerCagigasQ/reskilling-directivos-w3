@@ -1352,7 +1352,7 @@ body.dark body { background: var(--bg); color: var(--slate); }
       <div>
         <div class="block-eyebrow">Parte teórica · Paso 6 de 6</div>
         <div class="block-title">Memoria vs. Project Knowledge</div>
-        <div class="block-subtitle">Dos sistemas de persistencia que se complementan</div>
+        <div class="block-subtitle">Dos sistemas de persistencia que se complementan — y cómo se guarda lo que hablas con Claude</div>
       </div>
     </div>
 
@@ -1366,27 +1366,123 @@ body.dark body { background: var(--bg); color: var(--slate); }
       </div>
     </div>
 
+    <!-- ── Tres tipos de memoria ── -->
+    <h3 style="margin-bottom:12px;">Los 3 niveles de persistencia de Claude</h3>
+
     <table class="data-table" style="margin-bottom:20px;">
-      <thead><tr><th></th><th>Memoria global</th><th>Project Knowledge</th></tr></thead>
+      <thead><tr><th></th><th>Memoria global</th><th>Memoria de proyecto</th><th>Project Knowledge</th></tr></thead>
       <tbody>
-        <tr><td><strong>Alcance</strong></td><td>Todos tus chats y Projects</td><td>Solo dentro de ese Project</td></tr>
-        <tr><td><strong>Qué guarda</strong></td><td>Preferencias: idioma, formato, estilo</td><td>Instrucciones + documentos del proyecto</td></tr>
-        <tr><td><strong>Quién configura</strong></td><td>Claude aprende + tú editas</td><td>Tú lo configuras manualmente</td></tr>
-        <tr><td><strong>Comparte entre Projects</strong></td><td><span class="tag tag-green">Sí</span></td><td><span class="tag tag-red">No</span></td></tr>
-        <tr><td><strong>Se actualiza</strong></td><td>Automáticamente cada 24h</td><td>Cuando tú lo editas</td></tr>
-        <tr><td><strong>Disponibilidad</strong></td><td>Todos los planes</td><td>Todos los planes</td></tr>
+        <tr><td><strong>Alcance</strong></td><td>Solo chats <strong>fuera</strong> de Projects</td><td>Solo chats <strong>dentro</strong> de un Project concreto</td><td>Solo dentro de ese Project</td></tr>
+        <tr><td><strong>Qué guarda</strong></td><td>Preferencias: idioma, formato, estilo, rol</td><td>Resumen de las conversaciones del proyecto</td><td>Instrucciones + documentos que tú subes</td></tr>
+        <tr><td><strong>Quién la genera</strong></td><td>Claude aprende automáticamente + tú editas</td><td>Claude aprende automáticamente del proyecto</td><td>Tú la configuras manualmente</td></tr>
+        <tr><td><strong>Se comparte entre Projects</strong></td><td><span class="tag tag-green">Sí</span> — se aplica a todos tus chats generales</td><td><span class="tag tag-red">No</span> — cada Project tiene su propia memoria separada</td><td><span class="tag tag-red">No</span></td></tr>
+        <tr><td><strong>Se actualiza</strong></td><td>Cada <strong>24 h</strong> automáticamente · También inmediato si le dices a Claude qué recordar</td><td>Cada <strong>24 h</strong> automáticamente</td><td>Cuando tú lo editas</td></tr>
+        <tr><td><strong>Disponibilidad</strong></td><td>Todos los planes</td><td>Todos los planes</td><td>Todos los planes</td></tr>
       </tbody>
     </table>
 
+    <div class="highlight" style="margin-bottom:20px;">
+      <div class="highlight-title">Dato clave — Documentación oficial Anthropic</div>
+      <div class="highlight-body">
+        <em>"Each project has its own separate memory space and dedicated project summary, so the context within each of your projects is focused, relevant, and separate from other projects or non-project chats."</em>
+        <br><br>
+        <strong>Traducción:</strong> Cada proyecto tiene su <strong>propio espacio de memoria</strong> y su <strong>propio resumen de proyecto</strong>. El contexto de cada proyecto está separado de otros proyectos y de los chats generales (fuera de proyectos).
+      </div>
+    </div>
+
+    <!-- ── Cuándo se guardan las conversaciones ── -->
+    <h3 style="margin-bottom:12px;">¿Cuándo se guarda lo que hablas con Claude?</h3>
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Síntesis automática cada 24 horas</div>
+        <div class="step-desc">Claude revisa automáticamente tus conversaciones recientes y actualiza su resumen de memoria. Si eliminas una conversación, se elimina del resumen en las siguientes 24 horas.</div>
+        <div class="step-tip"><strong>⚠️ Dato oficial:</strong> "Claude's memory is updated within 24 hours when conversations are created, modified, or deleted." — La memoria se actualiza en un plazo de 24 horas cada vez que creas, modificas o eliminas conversaciones.</div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Actualización inmediata si tú lo pides</div>
+        <div class="step-desc">Puedes decirle a Claude directamente qué quieres que recuerde: <em>"Recuerda que mi equipo tiene 12 personas"</em>. El cambio se aplica <strong>inmediatamente</strong> a tu siguiente conversación, sin esperar a la síntesis diaria.</div>
+        <div class="step-tip"><strong>Dato oficial:</strong> "You can also update your memory summary directly from your chats. Simply tell Claude what you'd like it to remember, and it will update your memory summary without needing to leave the conversation."</div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Las conversaciones NO se comparten entre chats del mismo Project</div>
+        <div class="step-desc">Lo que dices en un chat <strong>no se transfiere</strong> automáticamente a otro chat del mismo Project. Solo las <strong>instrucciones de sistema</strong> y la <strong>Knowledge Base</strong> se comparten entre chats. Si quieres que algo persista entre chats, súbelo a la Knowledge Base o dile a Claude que lo recuerde.</div>
+        <div class="step-tip"><strong>⚠️ Dato oficial Anthropic:</strong> "Context is not shared across chats within a project unless the information is added into the project knowledge base."</div>
+      </div>
+    </div>
+
+    <!-- ── Alcance de búsqueda ── -->
+    <h3 style="margin-top:24px;margin-bottom:12px;">Acceso a conversaciones: fuera vs. dentro de un Project</h3>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">🔍 Buscar en chats anteriores — Función oficial (RAG)</div>
+      <div class="card-body" style="font-size:13px;">
+        Claude puede <strong>buscar en tus conversaciones anteriores</strong> usando RAG. Disponible en planes de pago (Pro, Max, Team, Enterprise). Simplemente dile:
+        <div style="background:var(--bg);border-radius:8px;padding:10px 14px;margin:8px 0;font-family:monospace;font-size:12px;">
+          "¿Qué hablamos sobre el presupuesto del proyecto?"<br>
+          "Busca nuestra conversación sobre el plan de staffing"<br>
+          "Continúa donde lo dejamos con el análisis de rotación"
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+      <div class="card" style="border-left:3px solid var(--orange);">
+        <div class="card-title" style="color:var(--orange);">Fuera de un Project</div>
+        <div class="card-body" style="font-size:13px;line-height:1.8;">
+          • Claude busca en <strong>todos</strong> tus chats generales (no los de Projects)<br>
+          • La <strong>memoria global</strong> se construye a partir de estos chats<br>
+          • Los chats incógnito <strong>no se incluyen</strong> en la búsqueda ni en la memoria<br>
+          • Puedes preguntarle cosas de cualquier conversación pasada
+        </div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--slate);">
+        <div class="card-title" style="color:var(--slate);">Dentro de un Project</div>
+        <div class="card-body" style="font-size:13px;line-height:1.8;">
+          • Las búsquedas están <strong>limitadas a las conversaciones de ese proyecto</strong><br>
+          • Claude <strong>no puede</strong> buscar chats de otros Projects ni chats generales desde dentro de un Project<br>
+          • Cada proyecto tiene su <strong>propia memoria</strong> y su <strong>propio resumen</strong><br>
+          • La memoria del proyecto <strong>no se mezcla</strong> con la memoria global ni con otros proyectos
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-bottom:20px;">
+      <p><strong style="color:var(--orange);">Resumen visual del flujo de memoria:</strong></p>
+      <p style="margin-top:8px;font-family:monospace;font-size:13px;line-height:2;">
+        Chats generales → sintetiza → <strong>Memoria global</strong> (se aplica a todos tus chats fuera de Projects)<br>
+        Chats del Project A → sintetiza → <strong>Memoria del Project A</strong> (solo se aplica dentro del Project A)<br>
+        Chats del Project B → sintetiza → <strong>Memoria del Project B</strong> (solo se aplica dentro del Project B)<br>
+        <span style="color:rgba(255,255,255,0.5);">Las memorias NO se cruzan entre sí.</span>
+      </p>
+    </div>
+
+    <!-- ── Qué va dónde ── -->
     <h3>¿Qué va dónde?</h3>
     <div class="card">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
         <div>
           <div style="font-size:12px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">→ Memoria global</div>
           <div style="font-size:13px;color:var(--slate-400);line-height:1.7;">
             "Responde siempre en español"<br>
             "Prefiero bullet points"<br>
             "Soy Director de Operaciones en Qaracter"
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">→ Memoria de proyecto</div>
+          <div style="font-size:13px;color:var(--slate-400);line-height:1.7;">
+            Se genera sola a partir de tus chats dentro del proyecto.<br>
+            Claude aprende el contexto recurrente de ese proyecto.
           </div>
         </div>
         <div>
@@ -1424,26 +1520,10 @@ body.dark body { background: var(--bg); color: var(--slate); }
         <div class="card-title" style="color:var(--slate-400);">Lo que NO recuerda</div>
         <div class="card-body" style="font-size:13px;line-height:1.8;">
           • Chats en modo <strong>Incógnito</strong> (icono fantasma)<br>
-          • Conversaciones eliminadas<br>
-          • Cada proyecto tiene su <strong>memoria separada</strong><br>
-          • La memoria NO se cruza entre Projects diferentes
+          • Conversaciones que hayas <strong>eliminado</strong> (se retiran de la memoria en 24 h)<br>
+          • Conversaciones en <strong>memoria pausada</strong> (no se sintetizan aunque reactives la memoria)<br>
+          • La memoria de un Project <strong>NO se cruza</strong> con otros Projects ni con los chats generales
         </div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:16px;">
-      <div class="card-title">🔍 Buscar en chats anteriores — Función oficial</div>
-      <div class="card-body" style="font-size:13px;">
-        Claude puede <strong>buscar en tus conversaciones anteriores</strong> usando RAG. Disponible en planes de pago (Pro, Max, Team, Enterprise). Simplemente dile:
-        <div style="background:var(--bg);border-radius:8px;padding:10px 14px;margin:8px 0;font-family:monospace;font-size:12px;">
-          "¿Qué hablamos sobre el presupuesto del proyecto?"<br>
-          "Busca nuestra conversación sobre el plan de staffing"<br>
-          "Continúa donde lo dejamos con el análisis de rotación"
-        </div>
-        <div style="padding:8px 12px;background:rgba(255,121,50,0.06);border-radius:8px;margin-top:8px;">
-          <strong style="color:var(--orange);font-size:12px;">IMPORTANTE:</strong> Las búsquedas dentro de un proyecto están limitadas a las conversaciones de <strong>ese proyecto específico</strong>. Las búsquedas fuera de proyectos cubren todos tus chats generales.
-        </div>
-        <div style="font-size:11px;color:var(--slate-300);margin-top:8px;">Fuente: <a href="https://support.anthropic.com/en/articles/11817273-how-does-claude-s-memory-work" target="_blank" style="color:var(--orange);">support.anthropic.com — Chat search and memory</a></div>
       </div>
     </div>
 
@@ -1452,13 +1532,13 @@ body.dark body { background: var(--bg); color: var(--slate); }
       <div class="card-body" style="font-size:13px;">
         <strong>Tú controlas la memoria.</strong> En Settings → Capabilities puedes:
         <ul style="margin:8px 0 0 16px;line-height:1.8;">
-          <li><strong>Pausar memoria:</strong> Claude conserva la existente pero no usa ni crea nuevas memorias</li>
-          <li><strong>Resetear memoria:</strong> Borra permanentemente todas las memorias (incluidas las de proyectos). Irreversible.</li>
-          <li><strong>Ver y editar:</strong> En "View and edit memory" puedes ver exactamente qué recuerda Claude y editarlo</li>
-          <li><strong>Chat incógnito:</strong> Las conversaciones en modo incógnito no se guardan en la memoria</li>
+          <li><strong>Pausar memoria:</strong> Claude conserva la existente pero no usa ni crea nuevas memorias. Las conversaciones que tengas con la memoria pausada <strong>no se sintetizarán</strong> aunque la reactives después.</li>
+          <li><strong>Resetear memoria:</strong> Borra permanentemente todas las memorias (incluidas las de proyectos). <strong>Irreversible.</strong></li>
+          <li><strong>Ver y editar:</strong> En "View and edit memory" puedes ver exactamente qué recuerda Claude y editarlo manualmente</li>
+          <li><strong>Chat incógnito:</strong> Las conversaciones en modo incógnito no se guardan en la memoria ni aparecen en el historial de búsqueda</li>
         </ul>
         <div style="padding:8px 12px;background:rgba(35,52,65,0.05);border-radius:8px;margin-top:8px;">
-          <strong style="font-size:12px;color:var(--slate);">PARA ENTERPRISE:</strong> Los administradores pueden habilitar/deshabilitar la memoria para toda la organización. Todas las memorias se retienen según las políticas de retención de datos.
+          <strong style="font-size:12px;color:var(--slate);">PARA ENTERPRISE:</strong> Los administradores pueden habilitar/deshabilitar la memoria para toda la organización. Todas las memorias (incluso las incógnito) se retienen según las políticas de retención de datos y son exportables por los admins.
         </div>
       </div>
     </div>
@@ -1478,61 +1558,135 @@ body.dark body { background: var(--bg); color: var(--slate); }
       <div>
         <div class="block-eyebrow">Parte práctica · Paso 1 de 9</div>
         <div class="block-title">Elige tu perfil</div>
-        <div class="block-subtitle">Selecciona el que más se ajusta a tu rol para personalizar la guía</div>
+        <div class="block-subtitle">Los 4 pasos que personalizan toda la guía para tu rol</div>
       </div>
     </div>
 
-    <div class="section-intro">
-      Selecciona tu perfil para que los siguientes pasos (plantilla de instrucciones, prompts sugeridos y documentos recomendados) se personalicen automáticamente para tu área.
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">¿Por qué elegir un perfil?</div>
+        <div class="step-desc">Cada rol directivo tiene necesidades distintas con Claude. Un Director de BU necesita análisis de pipeline y propuestas comerciales; un Director de People necesita planes de desarrollo y gestión de talento. El perfil adapta <strong>toda la guía</strong> para que cada ejemplo, plantilla y prompt sea directamente aplicable a tu día a día.</div>
+        <div class="step-tip"><strong>Analogía con Projects:</strong> Así como un Project de Claude necesita instrucciones de sistema específicas para funcionar bien, esta guía necesita saber tu rol para darte el contenido más relevante.</div>
+      </div>
     </div>
 
-    <p style="font-size:12px;font-weight:600;color:var(--slate-300);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Directivos</p>
-    <div class="profile-grid" id="profileGrid">
-      <button class="profile-btn" onclick="selectProfile('comercial')">
-        <div class="profile-role">Business Unit / Sales</div>
-        <div class="profile-name">Director/a de BU · Client Partner · Sales</div>
-      </button>
-      <button class="profile-btn" onclick="selectProfile('operaciones')">
-        <div class="profile-role">Operations & Delivery</div>
-        <div class="profile-name">Director/a de Operaciones · Competences</div>
-      </button>
-      <button class="profile-btn" onclick="selectProfile('financiero')">
-        <div class="profile-role">Finance & Controlling</div>
-        <div class="profile-name">Director/a Financiero/a · Controlling</div>
-      </button>
-      <button class="profile-btn" onclick="selectProfile('rrhh')">
-        <div class="profile-role">People & Culture</div>
-        <div class="profile-name">Director/a de People · Talent · Culture</div>
-      </button>
-      <button class="profile-btn" onclick="selectProfile('tecnologia')">
-        <div class="profile-role">Technology & Innovation</div>
-        <div class="profile-name">Director/a de Tecnología · Innovation · ExpoTech</div>
-      </button>
-      <button class="profile-btn" onclick="selectProfile('proyecto')">
-        <div class="profile-role">Market Solutions & Delivery</div>
-        <div class="profile-name">Director/a de Soluciones · Capital Markets · Riesgos</div>
-      </button>
+    <div class="step-card" style="border-color:rgba(255,121,50,0.25);background:rgba(255,121,50,0.03);">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">¿Qué se personaliza? <span class="tag tag-orange" style="margin-left:6px;">Lo más importante</span></div>
+        <div class="step-desc">Al seleccionar tu perfil, se adaptan automáticamente <strong>3 elementos clave</strong> de los siguientes pasos:</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+          <div style="background:rgba(255,121,50,0.05);border-radius:8px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">PLANTILLA</div>
+            <div style="font-size:12px;color:var(--slate-400);">Instrucciones de sistema pre-escritas con la identidad, contexto y reglas adaptadas a tu área funcional.</div>
+          </div>
+          <div style="background:rgba(35,52,65,0.04);border-radius:8px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--slate);margin-bottom:4px;">PROMPTS</div>
+            <div style="font-size:12px;color:var(--slate-400);">Primeros prompts sugeridos con casos de uso reales de tu rol para empezar a trabajar inmediatamente.</div>
+          </div>
+          <div style="background:rgba(35,52,65,0.04);border-radius:8px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--slate);margin-bottom:4px;">DOCUMENTOS</div>
+            <div style="font-size:12px;color:var(--slate-400);">Sugerencias de qué archivos subir a la Knowledge Base según el tipo de información que maneja tu rol.</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <p style="font-size:12px;font-weight:600;color:var(--slate-300);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;margin-top:16px;">Managers</p>
-    <div class="profile-grid" id="profileGridManagers">
-      <button class="profile-btn" onclick="selectProfile('manager_delivery')">
-        <div class="profile-role">Delivery / Project Management</div>
-        <div class="profile-name">Manager de Proyecto · Delivery Manager · Scrum Master</div>
-      </button>
-      <button class="profile-btn" onclick="selectProfile('manager_equipo')">
-        <div class="profile-role">Team Lead / Consultoría</div>
-        <div class="profile-name">Manager de Equipo · Team Lead · Competence Lead</div>
-      </button>
-      <button class="profile-btn" onclick="selectProfile('senior_manager')">
-        <div class="profile-role">Senior Manager / Account</div>
-        <div class="profile-name">Senior Manager · Account Manager · Practice Lead</div>
-      </button>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Selecciona tu perfil</div>
+        <div class="step-desc">Haz clic en el perfil que más se ajuste a tu rol actual. Si tu rol es híbrido, elige el que represente tu actividad principal — podrás crear un segundo Project para el otro área más adelante.</div>
+
+        <p style="font-size:12px;font-weight:600;color:var(--slate-300);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;margin-top:16px;">Directivos</p>
+        <div class="profile-grid" id="profileGrid">
+          <button class="profile-btn" onclick="selectProfile('comercial')">
+            <div class="profile-role">Business Unit / Sales</div>
+            <div class="profile-name">Director/a de BU · Client Partner · Sales</div>
+          </button>
+          <button class="profile-btn" onclick="selectProfile('operaciones')">
+            <div class="profile-role">Operations & Delivery</div>
+            <div class="profile-name">Director/a de Operaciones · Competences</div>
+          </button>
+          <button class="profile-btn" onclick="selectProfile('financiero')">
+            <div class="profile-role">Finance & Controlling</div>
+            <div class="profile-name">Director/a Financiero/a · Controlling</div>
+          </button>
+          <button class="profile-btn" onclick="selectProfile('rrhh')">
+            <div class="profile-role">People & Culture</div>
+            <div class="profile-name">Director/a de People · Talent · Culture</div>
+          </button>
+          <button class="profile-btn" onclick="selectProfile('tecnologia')">
+            <div class="profile-role">Technology & Innovation</div>
+            <div class="profile-name">Director/a de Tecnología · Innovation · ExpoTech</div>
+          </button>
+          <button class="profile-btn" onclick="selectProfile('proyecto')">
+            <div class="profile-role">Market Solutions & Delivery</div>
+            <div class="profile-name">Director/a de Soluciones · Capital Markets · Riesgos</div>
+          </button>
+        </div>
+
+        <p style="font-size:12px;font-weight:600;color:var(--slate-300);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;margin-top:16px;">Managers</p>
+        <div class="profile-grid" id="profileGridManagers">
+          <button class="profile-btn" onclick="selectProfile('manager_delivery')">
+            <div class="profile-role">Delivery / Project Management</div>
+            <div class="profile-name">Manager de Proyecto · Delivery Manager · Scrum Master</div>
+          </button>
+          <button class="profile-btn" onclick="selectProfile('manager_equipo')">
+            <div class="profile-role">Team Lead / Consultoría</div>
+            <div class="profile-name">Manager de Equipo · Team Lead · Competence Lead</div>
+          </button>
+          <button class="profile-btn" onclick="selectProfile('senior_manager')">
+            <div class="profile-role">Senior Manager / Account</div>
+            <div class="profile-name">Senior Manager · Account Manager · Practice Lead</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">¿Puedo cambiar de perfil después?</div>
+        <div class="step-desc">Sí. Puedes volver a esta sección en cualquier momento y seleccionar otro perfil. Los pasos siguientes se actualizarán automáticamente. Además, recuerda que la plantilla es un <strong>punto de partida</strong> — siempre puedes editarla manualmente para ajustarla a tu realidad concreta.</div>
+        <div class="step-tip"><strong>Consejo:</strong> Si gestionas dos áreas muy distintas (ej. Operaciones + Tecnología), te recomendamos crear <strong>dos Projects separados</strong> en Claude — uno para cada área. En la sección "Segundo Project" te explicamos cómo hacerlo.</div>
+      </div>
     </div>
 
     <div id="profileConfirm" style="display:none;" class="highlight">
       <div class="highlight-title">Perfil seleccionado: <span id="profileName"></span></div>
       <div class="highlight-body">La plantilla de instrucciones, los prompts sugeridos y los documentos recomendados se han personalizado para tu rol.</div>
+    </div>
+
+    <div class="card" style="border-left:4px solid var(--slate);margin-top:16px;margin-bottom:16px;">
+      <div class="card-title">📖 ¿Por qué personalizar por perfil? — Contexto oficial</div>
+      <div class="card-body">
+        Según la documentación de Anthropic, la eficacia de un Project depende directamente de la <strong>especificidad de las instrucciones de sistema</strong>. Un Project genérico "para directivos" es mucho menos efectivo que uno configurado específicamente para tu área funcional con contexto de tu equipo, tus métricas y tu tipo de decisiones.
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+          <div style="background:rgba(255,121,50,0.05);border-radius:8px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">CON PERFIL</div>
+            <div style="font-size:12px;color:var(--slate-400);">Plantilla pre-configurada con tu contexto, prompts relevantes para tu día a día, documentos sugeridos específicos para tu área.</div>
+          </div>
+          <div style="background:rgba(35,52,65,0.04);border-radius:8px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:var(--slate);margin-bottom:4px;">SIN PERFIL</div>
+            <div style="font-size:12px;color:var(--slate-400);">Instrucciones genéricas que requieren más personalización manual, prompts que pueden no ser aplicables a tu rol.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Knowledge Check inline -->
+    <div class="knowledge-check" id="kc-perfiles">
+      <div class="kc-badge">💡 Comprueba tu comprensión</div>
+      <div class="kc-question">Has seleccionado el perfil "Operations & Delivery" y quieres empezar a usar Claude para gestión de equipos. ¿Cuál es el siguiente paso más efectivo?</div>
+      <div class="kc-options">
+        <div class="kc-option" onclick="checkKC(this, 'kc-perfiles', false)"><span class="kc-letter">A</span><span>Abrir Claude y empezar a hacer preguntas directamente sin crear un Project</span></div>
+        <div class="kc-option" onclick="checkKC(this, 'kc-perfiles', true)"><span class="kc-letter">B</span><span>Copiar la plantilla personalizada de instrucciones y crear un Project con ella</span></div>
+        <div class="kc-option" onclick="checkKC(this, 'kc-perfiles', false)"><span class="kc-letter">C</span><span>Subir todos tus documentos a Claude sin configurar instrucciones de sistema</span></div>
+        <div class="kc-option" onclick="checkKC(this, 'kc-perfiles', false)"><span class="kc-letter">D</span><span>Pedirle a Claude que genere las instrucciones de sistema por ti</span></div>
+      </div>
+      <div class="kc-feedback" id="kc-perfiles-feedback"></div>
     </div>
 
     <div class="nav-buttons">
@@ -3717,6 +3871,8 @@ function checkKC(el, id, isCorrect) {
       feedback.innerHTML = '<strong>Exacto.</strong> RAG busca los fragmentos más relevantes automáticamente. No necesitas indexar nada manualmente — solo sube archivos con buen nombre y contenido claro.';
     } else if (id === 'kc-multiproyecto') {
       feedback.innerHTML = '<strong>Perfecto.</strong> Un nombre descriptivo (área + función + geografía) ayuda tanto a ti como a Claude. Recuerda: Claude SÍ ve el nombre del Project y lo usa como contexto adicional.';
+    } else if (id === 'kc-perfiles') {
+      feedback.innerHTML = '<strong>Correcto.</strong> La plantilla personalizada es el mejor punto de partida. Te ahorra tener que escribir las instrucciones de sistema desde cero y ya incluye la identidad, contexto, reglas y formato adaptados a tu rol.';
     }
   } else {
     el.classList.add('incorrect');
@@ -3732,6 +3888,8 @@ function checkKC(el, id, isCorrect) {
       feedback.innerHTML = 'La respuesta correcta es C. RAG (Retrieval Augmented Generation) busca automáticamente los fragmentos más relevantes de tu Knowledge Base para cada pregunta. Solo necesitas subir documentos bien nombrados.';
     } else if (id === 'kc-multiproyecto') {
       feedback.innerHTML = 'La respuesta correcta es B. Un nombre descriptivo como "Pipeline Comercial — BU Markets España" le da a Claude contexto inmediato. Nombres genéricos como "Mi Project" o "Ventas" no ayudan.';
+    } else if (id === 'kc-perfiles') {
+      feedback.innerHTML = 'La respuesta correcta es B. Copiar la plantilla de instrucciones personalizada y crear un Project con ella es el camino más efectivo. Así empiezas con un Project bien configurado desde el primer día, con identidad, contexto y reglas adaptadas a tu rol.';
     }
   }
 }
