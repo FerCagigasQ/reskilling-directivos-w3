@@ -1092,75 +1092,6 @@ body.dark body { background: var(--bg); color: var(--slate); }
       </div>
     </div>
 
-    <!-- ── INTERACTIVE ICRF BUILDER ── -->
-    <h3>🛠️ Construye tus instrucciones ahora</h3>
-    <p style="font-size:14px;color:var(--slate-400);margin-bottom:16px;">Rellena cada campo y ve cómo se genera tu instrucción de sistema en tiempo real. Al final podrás copiarla directamente en tu Project.</p>
-
-    <div class="icrf-builder" id="icrfBuilder">
-      <div class="icrf-tabs">
-        <div class="icrf-tab active" onclick="switchIcrfTab(0)">① Identidad</div>
-        <div class="icrf-tab" onclick="switchIcrfTab(1)">② Contexto</div>
-        <div class="icrf-tab" onclick="switchIcrfTab(2)">③ Reglas</div>
-        <div class="icrf-tab" onclick="switchIcrfTab(3)">④ Formato</div>
-      </div>
-
-      <div class="icrf-field" id="icrfPanel0">
-        <label>¿Qué rol quieres que asuma Claude?</label>
-        <div class="field-hint">Ej: "asistente ejecutivo", "sparring estratégico", "analista de equipo"</div>
-        <input type="text" id="icrf_role" placeholder="Ej: mi asistente ejecutivo para gestión de equipo" oninput="updateIcrfPreview()">
-        <label style="margin-top:16px;">¿Para qué área o función principal?</label>
-        <div class="field-hint">Ej: "Operaciones", "Business Unit de Markets", "People & Culture"</div>
-        <input type="text" id="icrf_area" placeholder="Ej: el área de Operaciones de Qaracter" oninput="updateIcrfPreview()">
-      </div>
-
-      <div class="icrf-field" id="icrfPanel1" style="display:none;">
-        <label>Tu nombre y cargo</label>
-        <input type="text" id="icrf_nombre" placeholder="Ej: Fernando Cagigas, Director de Tecnología" oninput="updateIcrfPreview()">
-        <label style="margin-top:16px;">Tamaño de tu equipo</label>
-        <input type="text" id="icrf_equipo" placeholder="Ej: 35 consultores en 8 proyectos activos" oninput="updateIcrfPreview()">
-        <label style="margin-top:16px;">Contexto de negocio relevante</label>
-        <div class="field-hint">Clientes principales, mercado, prioridades actuales</div>
-        <textarea id="icrf_contexto" placeholder="Ej: Qaracter, consultora de sector financiero. ~460 empleados. Presencia España, Brasil, México, Argentina, USA. Mis prioridades: reducir rotación y mejorar utilización al 80%." oninput="updateIcrfPreview()"></textarea>
-      </div>
-
-      <div class="icrf-field" id="icrfPanel2" style="display:none;">
-        <label>Idioma de las respuestas</label>
-        <select id="icrf_idioma" onchange="updateIcrfPreview()">
-          <option value="español">Español</option>
-          <option value="inglés">Inglés</option>
-          <option value="portugués">Portugués</option>
-        </select>
-        <label style="margin-top:16px;">Nivel de confidencialidad</label>
-        <div class="field-hint">¿Qué NO debe hacer Claude con la información?</div>
-        <textarea id="icrf_confidencial" placeholder="Ej: No sugieras compartir datos de staffing o pipeline fuera del equipo directivo. Si me pides datos de clientes, recuérdame verificar permisos." oninput="updateIcrfPreview()"></textarea>
-        <label style="margin-top:16px;">Reglas de actuación ante incertidumbre</label>
-        <input type="text" id="icrf_incertidumbre" placeholder="Ej: Si no tienes datos suficientes, indícalo y pregunta antes de asumir" oninput="updateIcrfPreview()">
-      </div>
-
-      <div class="icrf-field" id="icrfPanel3" style="display:none;">
-        <label>¿Cómo prefieres las respuestas?</label>
-        <select id="icrf_formato_tipo" onchange="updateIcrfPreview()">
-          <option value="bullet points con headers">Bullet points con encabezados</option>
-          <option value="párrafos ejecutivos">Párrafos ejecutivos breves</option>
-          <option value="tablas cuando sea posible">Tablas comparativas</option>
-          <option value="formato libre, adaptado al contenido">Adaptado al contenido</option>
-        </select>
-        <label style="margin-top:16px;">Extensión habitual</label>
-        <select id="icrf_extension" onchange="updateIcrfPreview()">
-          <option value="concisas (3-5 bullets)">Concisas (3-5 puntos)</option>
-          <option value="moderadas (1 página máximo)">Moderadas (~1 página)</option>
-          <option value="detalladas cuando se requiera">Detalladas si se requiere</option>
-        </select>
-        <label style="margin-top:16px;">Algo más que quieras añadir</label>
-        <input type="text" id="icrf_extra" placeholder="Ej: Incluye siempre un 'siguiente paso' accionable" oninput="updateIcrfPreview()">
-      </div>
-    </div>
-
-    <div class="icrf-preview" id="icrfPreview">
-      <span class="icrf-preview-label">VISTA PREVIA EN VIVO</span>
-<span style="opacity:0.5;">Rellena los campos de arriba para ver tu instrucción generarse aquí...</span></div>
-    <button class="icrf-copy-btn" onclick="copyIcrfResult()">📋 Copiar instrucciones completas</button>
-
     <!-- Knowledge Check for instrucciones -->
     <div class="knowledge-check" id="kc-instrucciones" style="margin-top:28px;">
       <div class="kc-badge">💡 Comprueba tu comprensión</div>
@@ -1671,100 +1602,60 @@ body.dark body { background: var(--bg); color: var(--slate); }
       <div>
         <div class="block-eyebrow">Parte práctica · Paso 1 de 10</div>
         <div class="block-title">Elige tu perfil</div>
-        <div class="block-subtitle">Los 4 pasos que personalizan toda la guía para tu rol</div>
+        <div class="block-subtitle">Selecciona tu rol para personalizar la guía, o construye tus instrucciones desde cero</div>
       </div>
     </div>
 
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <div class="step-content">
-        <div class="step-title">¿Por qué elegir un perfil?</div>
-        <div class="step-desc">Cada rol directivo tiene necesidades distintas con Claude. Un Director de BU necesita análisis de pipeline y propuestas comerciales; un Director de People necesita planes de desarrollo y gestión de talento. El perfil adapta <strong>toda la guía</strong> para que cada ejemplo, plantilla y prompt sea directamente aplicable a tu día a día.</div>
-        <div class="step-tip"><strong>Analogía con Projects:</strong> Así como un Project de Claude necesita instrucciones de sistema específicas para funcionar bien, esta guía necesita saber tu rol para darte el contenido más relevante.</div>
-      </div>
+    <div class="section-intro">
+      Tienes dos opciones: <strong>seleccionar un perfil predefinido</strong> (que adapta plantilla, prompts y documentos automáticamente) o <strong>construir tus instrucciones desde cero</strong> con el generador interactivo de abajo.
     </div>
 
-    <div class="step-card" style="border-color:rgba(255,121,50,0.25);background:rgba(255,121,50,0.03);">
-      <div class="step-num">2</div>
-      <div class="step-content">
-        <div class="step-title">¿Qué se personaliza? <span class="tag tag-orange" style="margin-left:6px;">Lo más importante</span></div>
-        <div class="step-desc">Al seleccionar tu perfil, se adaptan automáticamente <strong>3 elementos clave</strong> de los siguientes pasos:</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
-          <div style="background:rgba(255,121,50,0.05);border-radius:8px;padding:12px;">
-            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">PLANTILLA</div>
-            <div style="font-size:12px;color:var(--slate-400);">Instrucciones de sistema pre-escritas con la identidad, contexto y reglas adaptadas a tu área funcional.</div>
-          </div>
-          <div style="background:rgba(35,52,65,0.04);border-radius:8px;padding:12px;">
-            <div style="font-size:12px;font-weight:700;color:var(--slate);margin-bottom:4px;">PROMPTS</div>
-            <div style="font-size:12px;color:var(--slate-400);">Primeros prompts sugeridos con casos de uso reales de tu rol para empezar a trabajar inmediatamente.</div>
-          </div>
-          <div style="background:rgba(35,52,65,0.04);border-radius:8px;padding:12px;">
-            <div style="font-size:12px;font-weight:700;color:var(--slate);margin-bottom:4px;">DOCUMENTOS</div>
-            <div style="font-size:12px;color:var(--slate-400);">Sugerencias de qué archivos subir a la Knowledge Base según el tipo de información que maneja tu rol.</div>
-          </div>
-        </div>
-      </div>
+    <!-- ── Opción 1: Perfil predefinido ── -->
+    <h3>Opción 1: Selecciona un perfil predefinido</h3>
+    <p style="font-size:13px;color:var(--slate-400);margin-bottom:12px;">Haz clic en el perfil que más se ajuste a tu rol. Se personalizarán la plantilla, los prompts y los documentos sugeridos. Si tu rol es híbrido, elige tu actividad principal.</p>
+
+    <p style="font-size:12px;font-weight:600;color:var(--slate-300);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Directivos</p>
+    <div class="profile-grid" id="profileGrid">
+      <button class="profile-btn" onclick="selectProfile('comercial')">
+        <div class="profile-role">Business Unit / Sales</div>
+        <div class="profile-name">Director/a de BU · Client Partner · Sales</div>
+      </button>
+      <button class="profile-btn" onclick="selectProfile('operaciones')">
+        <div class="profile-role">Operations & Delivery</div>
+        <div class="profile-name">Director/a de Operaciones · Competences</div>
+      </button>
+      <button class="profile-btn" onclick="selectProfile('financiero')">
+        <div class="profile-role">Finance & Controlling</div>
+        <div class="profile-name">Director/a Financiero/a · Controlling</div>
+      </button>
+      <button class="profile-btn" onclick="selectProfile('rrhh')">
+        <div class="profile-role">People & Culture</div>
+        <div class="profile-name">Director/a de People · Talent · Culture</div>
+      </button>
+      <button class="profile-btn" onclick="selectProfile('tecnologia')">
+        <div class="profile-role">Technology & Innovation</div>
+        <div class="profile-name">Director/a de Tecnología · Innovation · ExpoTech</div>
+      </button>
+      <button class="profile-btn" onclick="selectProfile('proyecto')">
+        <div class="profile-role">Market Solutions & Delivery</div>
+        <div class="profile-name">Director/a de Soluciones · Capital Markets · Riesgos</div>
+      </button>
     </div>
 
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <div class="step-content">
-        <div class="step-title">Selecciona tu perfil</div>
-        <div class="step-desc">Haz clic en el perfil que más se ajuste a tu rol actual. Si tu rol es híbrido, elige el que represente tu actividad principal — podrás crear un segundo Project para el otro área más adelante.</div>
-
-        <p style="font-size:12px;font-weight:600;color:var(--slate-300);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;margin-top:16px;">Directivos</p>
-        <div class="profile-grid" id="profileGrid">
-          <button class="profile-btn" onclick="selectProfile('comercial')">
-            <div class="profile-role">Business Unit / Sales</div>
-            <div class="profile-name">Director/a de BU · Client Partner · Sales</div>
-          </button>
-          <button class="profile-btn" onclick="selectProfile('operaciones')">
-            <div class="profile-role">Operations & Delivery</div>
-            <div class="profile-name">Director/a de Operaciones · Competences</div>
-          </button>
-          <button class="profile-btn" onclick="selectProfile('financiero')">
-            <div class="profile-role">Finance & Controlling</div>
-            <div class="profile-name">Director/a Financiero/a · Controlling</div>
-          </button>
-          <button class="profile-btn" onclick="selectProfile('rrhh')">
-            <div class="profile-role">People & Culture</div>
-            <div class="profile-name">Director/a de People · Talent · Culture</div>
-          </button>
-          <button class="profile-btn" onclick="selectProfile('tecnologia')">
-            <div class="profile-role">Technology & Innovation</div>
-            <div class="profile-name">Director/a de Tecnología · Innovation · ExpoTech</div>
-          </button>
-          <button class="profile-btn" onclick="selectProfile('proyecto')">
-            <div class="profile-role">Market Solutions & Delivery</div>
-            <div class="profile-name">Director/a de Soluciones · Capital Markets · Riesgos</div>
-          </button>
-        </div>
-
-        <p style="font-size:12px;font-weight:600;color:var(--slate-300);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;margin-top:16px;">Managers</p>
-        <div class="profile-grid" id="profileGridManagers">
-          <button class="profile-btn" onclick="selectProfile('manager_delivery')">
-            <div class="profile-role">Delivery / Project Management</div>
-            <div class="profile-name">Manager de Proyecto · Delivery Manager · Scrum Master</div>
-          </button>
-          <button class="profile-btn" onclick="selectProfile('manager_equipo')">
-            <div class="profile-role">Team Lead / Consultoría</div>
-            <div class="profile-name">Manager de Equipo · Team Lead · Competence Lead</div>
-          </button>
-          <button class="profile-btn" onclick="selectProfile('senior_manager')">
-            <div class="profile-role">Senior Manager / Account</div>
-            <div class="profile-name">Senior Manager · Account Manager · Practice Lead</div>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="step-card">
-      <div class="step-num">4</div>
-      <div class="step-content">
-        <div class="step-title">¿Puedo cambiar de perfil después?</div>
-        <div class="step-desc">Sí. Puedes volver a esta sección en cualquier momento y seleccionar otro perfil. Los pasos siguientes se actualizarán automáticamente. Además, recuerda que la plantilla es un <strong>punto de partida</strong> — siempre puedes editarla manualmente para ajustarla a tu realidad concreta.</div>
-        <div class="step-tip"><strong>Consejo:</strong> Si gestionas dos áreas muy distintas (ej. Operaciones + Tecnología), te recomendamos crear <strong>dos Projects separados</strong> en Claude — uno para cada área. En la sección "Segundo Project" te explicamos cómo hacerlo.</div>
-      </div>
+    <p style="font-size:12px;font-weight:600;color:var(--slate-300);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;margin-top:16px;">Managers</p>
+    <div class="profile-grid" id="profileGridManagers">
+      <button class="profile-btn" onclick="selectProfile('manager_delivery')">
+        <div class="profile-role">Delivery / Project Management</div>
+        <div class="profile-name">Manager de Proyecto · Delivery Manager · Scrum Master</div>
+      </button>
+      <button class="profile-btn" onclick="selectProfile('manager_equipo')">
+        <div class="profile-role">Team Lead / Consultoría</div>
+        <div class="profile-name">Manager de Equipo · Team Lead · Competence Lead</div>
+      </button>
+      <button class="profile-btn" onclick="selectProfile('senior_manager')">
+        <div class="profile-role">Senior Manager / Account</div>
+        <div class="profile-name">Senior Manager · Account Manager · Practice Lead</div>
+      </button>
     </div>
 
     <div id="profileConfirm" style="display:none;" class="highlight">
@@ -1772,35 +1663,74 @@ body.dark body { background: var(--bg); color: var(--slate); }
       <div class="highlight-body">La plantilla de instrucciones, los prompts sugeridos y los documentos recomendados se han personalizado para tu rol.</div>
     </div>
 
-    <div class="card" style="border-left:4px solid var(--slate);margin-top:16px;margin-bottom:16px;">
-      <div class="card-title">📖 ¿Por qué personalizar por perfil? — Contexto oficial</div>
-      <div class="card-body">
-        Según la documentación de Anthropic, la eficacia de un Project depende directamente de la <strong>especificidad de las instrucciones de sistema</strong>. Un Project genérico "para directivos" es mucho menos efectivo que uno configurado específicamente para tu área funcional con contexto de tu equipo, tus métricas y tu tipo de decisiones.
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
-          <div style="background:rgba(255,121,50,0.05);border-radius:8px;padding:12px;">
-            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">CON PERFIL</div>
-            <div style="font-size:12px;color:var(--slate-400);">Plantilla pre-configurada con tu contexto, prompts relevantes para tu día a día, documentos sugeridos específicos para tu área.</div>
-          </div>
-          <div style="background:rgba(35,52,65,0.04);border-radius:8px;padding:12px;">
-            <div style="font-size:12px;font-weight:700;color:var(--slate);margin-bottom:4px;">SIN PERFIL</div>
-            <div style="font-size:12px;color:var(--slate-400);">Instrucciones genéricas que requieren más personalización manual, prompts que pueden no ser aplicables a tu rol.</div>
-          </div>
-        </div>
+    <!-- ── Opción 2: Constructor ICRF ── -->
+    <h3 style="margin-top:32px;">Opción 2: Construye tus instrucciones desde cero</h3>
+    <p style="font-size:13px;color:var(--slate-400);margin-bottom:16px;">Rellena cada campo y ve cómo se genera tu instrucción de sistema en tiempo real. Al final podrás copiarla directamente en tu Project.</p>
+
+    <div class="icrf-builder" id="icrfBuilder">
+      <div class="icrf-tabs">
+        <div class="icrf-tab active" onclick="switchIcrfTab(0)">① Identidad</div>
+        <div class="icrf-tab" onclick="switchIcrfTab(1)">② Contexto</div>
+        <div class="icrf-tab" onclick="switchIcrfTab(2)">③ Reglas</div>
+        <div class="icrf-tab" onclick="switchIcrfTab(3)">④ Formato</div>
+      </div>
+
+      <div class="icrf-field" id="icrfPanel0">
+        <label>¿Qué rol quieres que asuma Claude?</label>
+        <div class="field-hint">Ej: "asistente ejecutivo", "sparring estratégico", "analista de equipo"</div>
+        <input type="text" id="icrf_role" placeholder="Ej: mi asistente ejecutivo para gestión de equipo" oninput="updateIcrfPreview()">
+        <label style="margin-top:16px;">¿Para qué área o función principal?</label>
+        <div class="field-hint">Ej: "Operaciones", "Business Unit de Markets", "People & Culture"</div>
+        <input type="text" id="icrf_area" placeholder="Ej: el área de Operaciones de Qaracter" oninput="updateIcrfPreview()">
+      </div>
+
+      <div class="icrf-field" id="icrfPanel1" style="display:none;">
+        <label>Tu nombre y cargo</label>
+        <input type="text" id="icrf_nombre" placeholder="Ej: Fernando Cagigas, Director de Tecnología" oninput="updateIcrfPreview()">
+        <label style="margin-top:16px;">Tamaño de tu equipo</label>
+        <input type="text" id="icrf_equipo" placeholder="Ej: 35 consultores en 8 proyectos activos" oninput="updateIcrfPreview()">
+        <label style="margin-top:16px;">Contexto de negocio relevante</label>
+        <div class="field-hint">Clientes principales, mercado, prioridades actuales</div>
+        <textarea id="icrf_contexto" placeholder="Ej: Qaracter, consultora de sector financiero. ~460 empleados. Presencia España, Brasil, México, Argentina, USA. Mis prioridades: reducir rotación y mejorar utilización al 80%." oninput="updateIcrfPreview()"></textarea>
+      </div>
+
+      <div class="icrf-field" id="icrfPanel2" style="display:none;">
+        <label>Idioma de las respuestas</label>
+        <select id="icrf_idioma" onchange="updateIcrfPreview()">
+          <option value="español">Español</option>
+          <option value="inglés">Inglés</option>
+          <option value="portugués">Portugués</option>
+        </select>
+        <label style="margin-top:16px;">Nivel de confidencialidad</label>
+        <div class="field-hint">¿Qué NO debe hacer Claude con la información?</div>
+        <textarea id="icrf_confidencial" placeholder="Ej: No sugieras compartir datos de staffing o pipeline fuera del equipo directivo. Si me pides datos de clientes, recuérdame verificar permisos." oninput="updateIcrfPreview()"></textarea>
+        <label style="margin-top:16px;">Reglas de actuación ante incertidumbre</label>
+        <input type="text" id="icrf_incertidumbre" placeholder="Ej: Si no tienes datos suficientes, indícalo y pregunta antes de asumir" oninput="updateIcrfPreview()">
+      </div>
+
+      <div class="icrf-field" id="icrfPanel3" style="display:none;">
+        <label>¿Cómo prefieres las respuestas?</label>
+        <select id="icrf_formato_tipo" onchange="updateIcrfPreview()">
+          <option value="bullet points con headers">Bullet points con encabezados</option>
+          <option value="párrafos ejecutivos">Párrafos ejecutivos breves</option>
+          <option value="tablas cuando sea posible">Tablas comparativas</option>
+          <option value="formato libre, adaptado al contenido">Adaptado al contenido</option>
+        </select>
+        <label style="margin-top:16px;">Extensión habitual</label>
+        <select id="icrf_extension" onchange="updateIcrfPreview()">
+          <option value="concisas (3-5 bullets)">Concisas (3-5 puntos)</option>
+          <option value="moderadas (1 página máximo)">Moderadas (~1 página)</option>
+          <option value="detalladas cuando se requiera">Detalladas si se requiere</option>
+        </select>
+        <label style="margin-top:16px;">Algo más que quieras añadir</label>
+        <input type="text" id="icrf_extra" placeholder="Ej: Incluye siempre un 'siguiente paso' accionable" oninput="updateIcrfPreview()">
       </div>
     </div>
 
-    <!-- Knowledge Check inline -->
-    <div class="knowledge-check" id="kc-perfiles">
-      <div class="kc-badge">💡 Comprueba tu comprensión</div>
-      <div class="kc-question">Has seleccionado el perfil "Operations & Delivery" y quieres empezar a usar Claude para gestión de equipos. ¿Cuál es el siguiente paso más efectivo?</div>
-      <div class="kc-options">
-        <div class="kc-option" onclick="checkKC(this, 'kc-perfiles', false)"><span class="kc-letter">A</span><span>Abrir Claude y empezar a hacer preguntas directamente sin crear un Project</span></div>
-        <div class="kc-option" onclick="checkKC(this, 'kc-perfiles', true)"><span class="kc-letter">B</span><span>Copiar la plantilla personalizada de instrucciones y crear un Project con ella</span></div>
-        <div class="kc-option" onclick="checkKC(this, 'kc-perfiles', false)"><span class="kc-letter">C</span><span>Subir todos tus documentos a Claude sin configurar instrucciones de sistema</span></div>
-        <div class="kc-option" onclick="checkKC(this, 'kc-perfiles', false)"><span class="kc-letter">D</span><span>Pedirle a Claude que genere las instrucciones de sistema por ti</span></div>
-      </div>
-      <div class="kc-feedback" id="kc-perfiles-feedback"></div>
-    </div>
+    <div class="icrf-preview" id="icrfPreview">
+      <span class="icrf-preview-label">VISTA PREVIA EN VIVO</span>
+<span style="opacity:0.5;">Rellena los campos de arriba para ver tu instrucción generarse aquí...</span></div>
+    <button class="icrf-copy-btn" onclick="copyIcrfResult()">📋 Copiar instrucciones completas</button>
 
     <div class="nav-buttons">
       <button class="btn btn-ghost" onclick="goTo('memoria')">← Anterior</button>
