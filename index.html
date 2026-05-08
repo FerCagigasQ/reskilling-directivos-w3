@@ -741,7 +741,7 @@ body.dark body { background: var(--bg); color: var(--slate); }
   <a class="nav-item" onclick="goTo('prompts',this)" id="nav-prompts"><div class="nav-step-num">11</div> Primeros prompts</a>
   <a class="nav-item" onclick="goTo('aplicaciones',this)" id="nav-aplicaciones"><div class="nav-step-num">12</div> Aplicaciones avanzadas</a>
   <a class="nav-item" onclick="goTo('artefactos',this)" id="nav-artefactos"><div class="nav-step-num">13</div> Artefactos y archivos</a>
-  <a class="nav-item" onclick="goTo('office',this)" id="nav-office"><div class="nav-step-num">14</div> Claude en Office y Designer</a>
+  <a class="nav-item" onclick="goTo('office',this)" id="nav-office"><div class="nav-step-num">14</div> Office, Cowork y Design</a>
   <a class="nav-item" onclick="goTo('multiproyecto',this)" id="nav-multiproyecto"><div class="nav-step-num">15</div> Segundo Project</a>
   <a class="nav-item" onclick="goTo('iteracion',this)" id="nav-iteracion"><div class="nav-step-num">16</div> Taller de iteración</a>
   <a class="nav-item" onclick="goTo('checklist',this)" id="nav-checklist"><div class="nav-step-num">17</div> Checklist</a>
@@ -3002,78 +3002,145 @@ Formato profesional con headers, tablas y números bien formateados.</div>
       </div>
       <div>
         <div class="block-eyebrow">Parte práctica · Paso 7 de 10</div>
-        <div class="block-title">Claude en Office y Cloud Designer</div>
+        <div class="block-title">Claude en Office, Cowork y Claude Design</div>
         <div class="block-subtitle">Integración directa con PowerPoint, Excel, Word y creación de contenido visual avanzado</div>
       </div>
     </div>
 
     <div class="section-intro">
-      En la segunda sesión vimos cómo Claude se integra <strong>directamente dentro de las aplicaciones de Office</strong> (PowerPoint, Excel, Word) mediante complementos nativos, y cómo <strong>Cloud Designer</strong> permite crear presentaciones, prototipos y vídeos interactivos con un nivel de diseño muy superior al de los artefactos básicos.
+      Claude se integra <strong>directamente dentro de las aplicaciones de Office</strong> (PowerPoint, Excel, Word, Outlook) mediante complementos nativos, y <strong>Claude Design</strong> (antes Cloud Designer) permite crear presentaciones, prototipos y diseño visual avanzado. Además, <strong>Cowork</strong> — el modo agente del escritorio — ya soporta Projects. Veamos cómo se relaciona cada herramienta con los Projects que hemos configurado.
+    </div>
+
+    <!-- ── PROJECTS COMPATIBILITY TABLE ── -->
+    <h3>¿Dónde funcionan los Projects?</h3>
+    <div class="highlight" style="margin-bottom:20px;">
+      <div class="highlight-title">Compatibilidad oficial de Projects con cada producto de Claude</div>
+      <div class="highlight-body" style="padding:0;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:var(--slate);color:white;">
+              <th style="padding:10px 14px;text-align:left;">Producto</th>
+              <th style="padding:10px 14px;text-align:center;">¿Projects?</th>
+              <th style="padding:10px 14px;text-align:left;">¿Qué se comparte?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--slate-100);">
+              <td style="padding:10px 14px;font-weight:600;">claude.ai (Chat)</td>
+              <td style="padding:10px 14px;text-align:center;color:#16a34a;font-weight:700;">✓ Sí</td>
+              <td style="padding:10px 14px;">Instrucciones de sistema, Knowledge Base, Memoria, Artefactos</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--slate-100);">
+              <td style="padding:10px 14px;font-weight:600;">Cowork (app escritorio)</td>
+              <td style="padding:10px 14px;text-align:center;color:#16a34a;font-weight:700;">✓ Sí</td>
+              <td style="padding:10px 14px;">Instrucciones, Memoria del proyecto, carpeta de trabajo local. Puede importar desde Projects de Chat. Claude lee y escribe archivos locales.</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--slate-100);">
+              <td style="padding:10px 14px;font-weight:600;">Claude Design</td>
+              <td style="padding:10px 14px;text-align:center;color:#d97706;font-weight:700;">~ Parcial</td>
+              <td style="padding:10px 14px;">Tiene su propio sistema de proyectos (contexto, capturas, codebase). Hereda el <strong>Design System</strong> de la organización (colores, tipografías, componentes). No comparte la Knowledge Base de claude.ai.</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--slate-100);">
+              <td style="padding:10px 14px;font-weight:600;">Office (Excel, PPT, Word, Outlook)</td>
+              <td style="padding:10px 14px;text-align:center;color:#dc2626;font-weight:700;">✗ No</td>
+              <td style="padding:10px 14px;">No heredan Projects. Usan <strong>Skills</strong> (compartidos desde claude.ai) y <strong>contexto cruzado</strong> entre archivos abiertos. No acceden a tu KB ni a tus instrucciones de sistema.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="info-box" style="margin-bottom:20px;">
-      <p><strong>Instalación:</strong> En cada aplicación de Office, ve a <em>Complementos → Buscar "Claude"</em> → Agregar. Si ya iniciaste sesión en una app (ej. PowerPoint), las demás no te pedirán login de nuevo. Las <strong>Skills</strong> que tengas creadas en claude.ai también están disponibles en los complementos de Office.</p>
+      <p><strong>Instalación Office:</strong> Ve a <em>Complementos → Buscar "Claude for Microsoft 365"</em> → Agregar en cualquier app. Si ya iniciaste sesión en una (ej. PowerPoint), las demás no te pedirán login. Activa <em>Settings → Let Claude work across files</em> para que el contexto se comparta entre Excel, PPT, Word y Outlook. Las <strong>Skills</strong> de claude.ai también están disponibles en los complementos.</p>
     </div>
 
     <h3>Claude en las aplicaciones de Office</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
       <div class="card">
         <div class="card-title">PowerPoint</div>
         <div class="card-body">
-          <strong>Mayor valor añadido.</strong> Crea presentaciones completas desde cero, edita slides existentes, aplica branding corporativo usando Skills. Puedes subir una presentación existente y pedir que la modifique.<br><br>
-          <em style="color:var(--slate-300);">Ejemplo de sesión: presentación de resultados Q3 generada desde el complemento con el skill de branding de Qaracter.</em>
+          <strong>Mayor valor añadido.</strong> Crea presentaciones completas desde cero, edita slides existentes, aplica branding corporativo usando Skills. Trabaja dentro de tu template (layouts, fuentes, colores) y genera gráficos nativos editables.<br><br>
+          <em style="color:var(--slate-300);">Ejemplo: presentación de resultados Q3 generada con el skill de branding de Qaracter.</em>
         </div>
       </div>
       <div class="card">
         <div class="card-title">Excel</div>
         <div class="card-body">
-          <strong>Velocidad y análisis.</strong> Crea hojas desde cero, filtra datos, crea resúmenes en nuevas hojas, enriquece descripciones usando notas adicionales. Todo lo que puedes hacer con Claude lo puedes integrar aquí.<br><br>
-          <em style="color:var(--slate-300);">Ejemplo de sesión: exportación de Jira a Excel — filtrar casos aceptados en una nueva hoja en segundos.</em>
+          <strong>Velocidad y análisis.</strong> Lee workbooks multi-pestaña, construye modelos con fórmulas reales, y rastrea cada celda que modifica. Crea hojas derivadas y resúmenes en segundos.<br><br>
+          <em style="color:var(--slate-300);">Ejemplo: exportación de Jira a Excel — filtrar casos aceptados en una nueva hoja.</em>
         </div>
       </div>
       <div class="card">
         <div class="card-title">Word</div>
         <div class="card-body">
-          <strong>Redacción y variantes.</strong> Genera contratos, informes, memos. Ventaja clave: puede generar <strong>alternativas de tono</strong> (cercano, formal, legal) que no se pueden hacer fácilmente desde el chat.<br><br>
-          <em style="color:var(--slate-300);">Ejemplo de sesión: contrato de colaboración profesional con 3 variantes de tono generadas automáticamente.</em>
+          <strong>Redacción con control de cambios.</strong> Genera contratos, informes, memos. Las ediciones se registran como <em>tracked changes</em>, y Claude responde a los hilos de comentarios explicando qué cambió y por qué.<br><br>
+          <em style="color:var(--slate-300);">Ejemplo: contrato de colaboración con 3 variantes de tono generadas automáticamente.</em>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Outlook</div>
+        <div class="card-body">
+          <strong>Email inteligente.</strong> Lee tus emails, hilos completos e incluso adjuntos. Puedes pedirle que resuma un hilo, redacte una respuesta o coordine con datos de Excel/PPT abiertos en la misma sesión.<br><br>
+          <em style="color:var(--slate-300);">Ejemplo: resumir un hilo de 20 emails del cliente y redactar la respuesta con datos del status report.</em>
         </div>
       </div>
     </div>
 
     <div class="highlight" style="margin-bottom:20px;">
-      <div class="highlight-title">Skills compartidos entre chat y Office</div>
-      <div class="highlight-body">Las Skills que creas en claude.ai (como el "Qaracter Brand Standards" para aplicar colores, fuentes y estilos corporativos) <strong>también aparecen en los complementos de Office</strong>. No necesitas recrearlas. Si un compañero publica una Skill, todos los miembros del equipo pueden usarla.</div>
+      <div class="highlight-title">Contexto cruzado entre apps + Skills compartidos</div>
+      <div class="highlight-body">Desde marzo 2026, el contexto se comparte automáticamente entre Excel, PowerPoint, Word y Outlook en una misma conversación. Claude puede leer un Excel y crear la PPT sin que copies nada. Las <strong>Skills</strong> que creas en claude.ai también aparecen en los complementos de Office — no necesitas recrearlas. <strong>Importante:</strong> los complementos de Office <strong>no</strong> heredan las instrucciones ni la Knowledge Base de tus Projects. El contexto viene de los archivos abiertos y de las Skills, no del Project.<br><br><em>Fuente: <a href="https://claude.com/blog/claude-excel-powerpoint-updates" target="_blank" style="color:var(--orange);">claude.com/blog/claude-excel-powerpoint-updates</a> (marzo 2026)</em></div>
     </div>
 
-    <h3>Cloud Designer</h3>
-    <div class="card" style="border-left:4px solid var(--orange);margin-bottom:16px;">
-      <div class="card-title">Un nivel superior de diseño visual</div>
+    <!-- ── COWORK ── -->
+    <h3>Cowork — el modo agente con Projects</h3>
+    <div class="card" style="border-left:4px solid #16a34a;margin-bottom:16px;">
+      <div class="card-title">Projects en el escritorio desde marzo 2026</div>
       <div class="card-body">
-        Cloud Designer es una herramienta separada que genera contenido en <strong>HTML interactivo</strong> con un nivel de creatividad y diseño muy superior al PowerPoint estándar. Incluye cuatro modos:
+        <strong>Cowork</strong> es el modo de la app de escritorio de Claude donde el agente trabaja autónomamente: lee y escribe archivos locales, ejecuta código, y realiza tareas de múltiples pasos. Desde marzo 2026 soporta Projects con:
+        <ul style="margin:8px 0 0 0;padding-left:20px;font-size:13px;">
+          <li><strong>Instrucciones personalizadas</strong> — las mismas instrucciones de sistema que configuraste en claude.ai</li>
+          <li><strong>Memoria del proyecto</strong> — persiste entre tareas dentro del mismo proyecto</li>
+          <li><strong>Carpeta de trabajo local</strong> — Claude accede directamente a archivos de tu PC</li>
+          <li><strong>Importación desde Chat</strong> — puedes migrar un Project de claude.ai a Cowork y seguir trabajando en modo agente</li>
+        </ul>
+        <div style="margin-top:10px;font-size:12px;color:var(--slate-400);">
+          <strong>Caso de uso Qaracter:</strong> Configura un Project "Proyecto Apolo" en claude.ai con las instrucciones ICRF y la Knowledge Base. Cuando necesites que Claude trabaje directamente sobre tus archivos locales (hojas Excel de horas, documentos Word de actas), impórtalo a Cowork y déjale que ejecute las tareas sobre los archivos reales de tu disco.
+        </div>
+        <div style="margin-top:8px;font-size:12px;"><em>Fuente: <a href="https://anthropic.com/product/claude-cowork" target="_blank" style="color:var(--orange);">anthropic.com/product/claude-cowork</a> · <a href="https://claudelab.net/en/articles/cowork/cowork-projects-integration-guide" target="_blank" style="color:var(--orange);">Guía de integración Projects+Cowork</a></em></div>
+      </div>
+    </div>
+
+    <!-- ── CLAUDE DESIGN ── -->
+    <h3>Claude Design (antes Cloud Designer)</h3>
+    <div class="card" style="border-left:4px solid var(--orange);margin-bottom:16px;">
+      <div class="card-title">Diseño visual avanzado con proyectos propios</div>
+      <div class="card-body">
+        <strong>Claude Design</strong> (lanzado en abril 2026 por Anthropic Labs) permite crear diseños, prototipos interactivos, presentaciones y microsites desde una conversación con Claude. Tiene su propio sistema de proyectos con contexto (capturas, codebases, archivos de diseño), pero <strong>no comparte la Knowledge Base de claude.ai</strong>. Sí hereda el <strong>Design System</strong> de la organización.
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
           <div style="background:rgba(255,121,50,0.06);border-radius:8px;padding:10px;">
-            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">Prototype</div>
-            <div style="font-size:12px;color:var(--slate-400);">Crea interfaces funcionales tipo Figma — ideal para demos de producto.</div>
+            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">Prototipos interactivos</div>
+            <div style="font-size:12px;color:var(--slate-400);">Interfaces funcionales tipo Figma. Ideal para demos de producto y user testing.</div>
           </div>
           <div style="background:rgba(255,121,50,0.06);border-radius:8px;padding:10px;">
-            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">Slide Deck</div>
-            <div style="font-size:12px;color:var(--slate-400);">Presentaciones desde cero con diseño avanzado, exportables a PowerPoint.</div>
+            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">Presentaciones</div>
+            <div style="font-size:12px;color:var(--slate-400);">Decks completos desde cero con diseño avanzado. Exportables a PPTX o Canva.</div>
           </div>
           <div style="background:rgba(255,121,50,0.06);border-radius:8px;padding:10px;">
-            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">From Template</div>
-            <div style="font-size:12px;color:var(--slate-400);">Sube un template y edítalo. A diferencia de Slide Deck, parte de un diseño existente.</div>
+            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">Landing pages y microsites</div>
+            <div style="font-size:12px;color:var(--slate-400);">Páginas web completas, formularios, dashboards internos — todo conversacional.</div>
           </div>
           <div style="background:rgba(255,121,50,0.06);border-radius:8px;padding:10px;">
-            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">Video</div>
-            <div style="font-size:12px;color:var(--slate-400);">Genera vídeos explicativos interactivos en HTML. Ideal para presentar tecnología nueva a clientes antes de la propuesta formal.</div>
+            <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:4px;">Iteración con comentarios inline</div>
+            <div style="font-size:12px;color:var(--slate-400);">Haz clic en cualquier elemento del canvas y pide cambios puntuales. Más rápido que describir en el chat.</div>
           </div>
         </div>
+        <div style="margin-top:10px;font-size:12px;"><em>Fuente: <a href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank" style="color:var(--orange);">anthropic.com/news/claude-design-anthropic-labs</a> (abril 2026)</em></div>
       </div>
     </div>
 
     <div class="card" style="margin-bottom:16px;">
       <div class="card-title">Design Systems compartidos</div>
-      <div class="card-body">Puedes crear un <strong>Design System</strong> subiendo los estilos de tu web o marca (colores, tipografías, espaciados). Cloud Designer extrae automáticamente todos los elementos visuales y los aplica a todo lo que generes. Si un compañero crea y publica un Design System, todo el equipo puede usarlo — no necesitas recrear los estilos de Qaracter cada vez.</div>
+      <div class="card-body">Configura un <strong>Design System</strong> una sola vez subiendo los estilos de tu web o marca (colores, tipografías, componentes). Claude Design lo extrae automáticamente y lo aplica a todo lo que genere cualquier miembro del equipo. Para Team y Enterprise, el admin configura el Design System y todos los proyectos lo heredan. <strong>No necesitas recrear los estilos de Qaracter cada vez.</strong><br><br><em>Fuente: <a href="https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design" target="_blank" style="color:var(--orange);">support.claude.com — Set up your design system</a></em></div>
     </div>
 
     <h3>Cuándo usar cada herramienta</h3>
@@ -3083,46 +3150,59 @@ Formato profesional con headers, tablas y números bien formateados.</div>
           <tr style="background:var(--slate);color:white;">
             <th style="padding:10px 14px;text-align:left;border-radius:8px 0 0 0;">Necesidad</th>
             <th style="padding:10px 14px;text-align:left;">Herramienta</th>
+            <th style="padding:10px 14px;text-align:left;">¿Usa Projects?</th>
             <th style="padding:10px 14px;text-align:left;border-radius:0 8px 0 0;">Por qué</th>
           </tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--slate-100);">
+            <td style="padding:10px 14px;">Consultas con todo el contexto del proyecto</td>
+            <td style="padding:10px 14px;font-weight:600;">claude.ai (Chat) con Project</td>
+            <td style="padding:10px 14px;color:#16a34a;font-weight:600;">✓ Sí</td>
+            <td style="padding:10px 14px;color:var(--slate-400);">KB + instrucciones + memoria. El escenario principal de esta guía.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--slate-100);">
+            <td style="padding:10px 14px;">Trabajar sobre archivos locales (Excel, Word, carpetas)</td>
+            <td style="padding:10px 14px;font-weight:600;">Cowork (app escritorio)</td>
+            <td style="padding:10px 14px;color:#16a34a;font-weight:600;">✓ Sí</td>
+            <td style="padding:10px 14px;color:var(--slate-400);">Importa tu Project y Claude trabaja directamente sobre tus archivos</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--slate-100);">
             <td style="padding:10px 14px;">Editar una PPT existente</td>
             <td style="padding:10px 14px;font-weight:600;">PowerPoint + complemento Claude</td>
-            <td style="padding:10px 14px;color:var(--slate-400);">Trabaja directamente sobre el archivo original</td>
+            <td style="padding:10px 14px;color:#dc2626;font-weight:600;">✗ No</td>
+            <td style="padding:10px 14px;color:var(--slate-400);">Trabaja sobre el archivo original. Usa Skills, no Projects.</td>
           </tr>
           <tr style="border-bottom:1px solid var(--slate-100);">
-            <td style="padding:10px 14px;">Crear una PPT nueva con diseño impactante</td>
-            <td style="padding:10px 14px;font-weight:600;">Cloud Designer → Slide Deck</td>
-            <td style="padding:10px 14px;color:var(--slate-400);">Nivel de diseño superior, exportable a PPT</td>
+            <td style="padding:10px 14px;">Analizar Excel + crear PPT en una conversación</td>
+            <td style="padding:10px 14px;font-weight:600;">Office cross-app (Excel + PPT)</td>
+            <td style="padding:10px 14px;color:#dc2626;font-weight:600;">✗ No</td>
+            <td style="padding:10px 14px;color:var(--slate-400);">Contexto cruzado entre archivos abiertos. Skills compartidos.</td>
           </tr>
           <tr style="border-bottom:1px solid var(--slate-100);">
-            <td style="padding:10px 14px;">Analizar/filtrar datos de Jira, CRM, etc.</td>
-            <td style="padding:10px 14px;font-weight:600;">Excel + complemento Claude</td>
-            <td style="padding:10px 14px;color:var(--slate-400);">Crea hojas derivadas en segundos</td>
+            <td style="padding:10px 14px;">Crear una PPT/prototipo con diseño impactante</td>
+            <td style="padding:10px 14px;font-weight:600;">Claude Design</td>
+            <td style="padding:10px 14px;color:#d97706;font-weight:600;">~ Parcial</td>
+            <td style="padding:10px 14px;color:var(--slate-400);">Tiene sus propios proyectos + Design System. No hereda KB de claude.ai.</td>
           </tr>
           <tr style="border-bottom:1px solid var(--slate-100);">
-            <td style="padding:10px 14px;">Generar contrato con variantes de tono</td>
-            <td style="padding:10px 14px;font-weight:600;">Word + complemento Claude</td>
-            <td style="padding:10px 14px;color:var(--slate-400);">Genera múltiples versiones sin copiar/pegar</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--slate-100);">
-            <td style="padding:10px 14px;">Vídeo explicativo para cliente</td>
-            <td style="padding:10px 14px;font-weight:600;">Cloud Designer → Video</td>
-            <td style="padding:10px 14px;color:var(--slate-400);">HTML interactivo que diferencia de la competencia</td>
+            <td style="padding:10px 14px;">Gestionar emails del cliente con contexto</td>
+            <td style="padding:10px 14px;font-weight:600;">Outlook + complemento Claude</td>
+            <td style="padding:10px 14px;color:#dc2626;font-weight:600;">✗ No</td>
+            <td style="padding:10px 14px;color:var(--slate-400);">Lee hilos y adjuntos. Se integra con Excel/PPT/Word abiertos.</td>
           </tr>
           <tr>
             <td style="padding:10px 14px;">Generar archivo descargable rápido</td>
             <td style="padding:10px 14px;font-weight:600;">Chat de Claude (artefactos)</td>
-            <td style="padding:10px 14px;color:var(--slate-400);">Más rápido cuando no necesitas diseño avanzado</td>
+            <td style="padding:10px 14px;color:#16a34a;font-weight:600;">✓ Sí</td>
+            <td style="padding:10px 14px;color:var(--slate-400);">Más rápido cuando no necesitas diseño avanzado. Dentro del Project.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="info-box">
-      <p><strong>Nota sobre tokens:</strong> Cloud Designer consume tokens significativamente. En la sesión se mencionó que con poco uso se puede alcanzar el 70% del cupo. Planifica el uso para las tareas de mayor impacto (propuestas a clientes, presentaciones de comité).</p>
+      <p><strong>Nota sobre tokens:</strong> Claude Design consume tokens significativamente. Planifica su uso para las tareas de mayor impacto (propuestas a clientes, presentaciones de comité). Los complementos de Office también consumen tokens de tu plan — cada interacción con archivos cuenta.</p>
     </div>
 
     <div class="nav-buttons">
